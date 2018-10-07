@@ -1,0 +1,46 @@
+<div class='card'>
+  <h3 class='card-header bg-primary text-white'>
+      {{pageTitle}}
+  </h3>
+  <div class='card-body'> 
+      <div class="list-inline">
+        <h5 class="list-inline-item">Filtered by:</h5>
+        <input type='radio' class="list-inline-item" value="Mens" name="gender" [(ngModel)]="listFilter"/>Men
+        <input type='radio' class="list-inline-item" value="Womens" name="gender" [(ngModel)]="listFilter"/>Woman
+        <input type='radio' class="list-inline-item" value="Kids" name="gender" [(ngModel)]="listFilter"/>Kids
+      </div>
+     
+      <div class='table-responsive'>
+          <table class='table' *ngIf='bikes && bikes.length'>
+              <thead>
+                  <tr>
+                      <th>
+                        <button (click)='toggleImage()' class='btn btn-primary'>
+                          {{showImage ? 'Hide': 'Show'}} Image
+                      </button>
+                      </th>
+                      <th>Product</th>
+                      <th>Code</th>
+                      <th>Available</th>
+                      <th>Catagory</th>
+                      <th>Price</th>
+                      <th>5 Star Rating</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor='let bike of filterBikes'>
+                  <td><img *ngIf='showImage'
+                      [src]='bike.imageUrl' [title]='bike.bikeName | uppercase' [style.width.px]='imgageWidth'
+                      [style.margin.px]='imageMargin'></td>
+                      <td>{{ bike.bikeName}}</td>
+                      <td> {{ bike.bikeCode | convertToSpaces:'-'}}</td>
+                      <td>{{ bike.releaseDate}}</td>
+                      <td>{{ bike.category}}</td>
+                      <td>{{ bike.price | currency: 'EUR':'symbol':'1.2-2'}}</td>
+                      <td>{{ bike.starRating}}</td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
