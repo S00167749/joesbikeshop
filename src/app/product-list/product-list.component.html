@@ -5,9 +5,9 @@
   <div class='card-body'> 
       <div class="list-inline">
         <h5 class="list-inline-item">Filtered by:</h5>
-        <input type='radio' class="list-inline-item" value="Mens" name="gender" [(ngModel)]="listFilter"/>Men
-        <input type='radio' class="list-inline-item" value="Womens" name="gender" [(ngModel)]="listFilter"/>Woman
-        <input type='radio' class="list-inline-item" value="Kids" name="gender" [(ngModel)]="listFilter"/>Kids
+        <input type='checkbox' class="list-inline-item" value="Mens" name="gender" (click)="click($event)"/>Men
+        <input type='checkbox' class="list-inline-item" value="Womens" name="gender" (click)="click($event)"/>Woman
+        <input type='checkbox' class="list-inline-item" value="Kids" name="gender" (click)="click($event)"/>Kids
       </div>
      
       <div class='table-responsive'>

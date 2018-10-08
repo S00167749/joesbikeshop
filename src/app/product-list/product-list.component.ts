@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from '../IProduct';
+import { FilterPipe } from './filter.pipe';
+
 
 @Component({
   selector: 'app-product-list',
@@ -15,6 +17,9 @@ export class ProductListComponent implements OnInit {
   filterBikes : IProduct[];
   _listFilter : string;
 
+
+  isChecked : boolean;
+
   constructor() { }
 
   ngOnInit() {
@@ -25,7 +30,7 @@ export class ProductListComponent implements OnInit {
   toggleImage() : void {
     this.showImage = !this.showImage;
   }
-
+/*
   get listFilter() : string {
     return this._listFilter;
 }
@@ -34,12 +39,21 @@ set listFilter(value : string) {
     this._listFilter = value;
     this.filterBikes = this.listFilter ? this.performFilter(this.listFilter) : this.bikes;
 }
+*/
 
 performFilter(filterBy : string) : IProduct[]{
+
   filterBy = filterBy.toLocaleLowerCase();
-  return this.bikes.filter((bike1 : IProduct) => bike1.category.toLocaleLowerCase() === filterBy);
-  //return this.bikes.filter((bike : IProduct) =>
-    //  bike.category.toLocaleLowerCase().indexOf(filterBy) !== -1);
+  return this.bikes.filter((bike1 : IProduct) => bike1.category.toLocaleLowerCase().indexOf(filterBy));
+
+}
+
+click(ev){
+  console.log(ev.target.defaultValue);
+  if(ev.isChecked)
+  {
+    this.filterBikes = this.performFilter(ev.target.defaultValue);
+  }
 }
 
   bikes : IProduct[] = [
