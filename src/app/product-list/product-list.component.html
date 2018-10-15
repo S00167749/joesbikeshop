@@ -5,13 +5,13 @@
   <div class='card-body'> 
       <div class="list-inline">
         <h5 class="list-inline-item">Filtered by:</h5>
-        <input type='checkbox' class="list-inline-item" value="Mens" name="gender" (click)="click($event)"/>Men
-        <input type='checkbox' class="list-inline-item" value="Womens" name="gender" (click)="click($event)"/>Woman
-        <input type='checkbox' class="list-inline-item" value="Kids" name="gender" (click)="click($event)"/>Kids
+        <input #mens type='checkbox' class="list-inline-item"  (change)="mens.checked ?  filterChange('mens') : remove('mens')" />Men
+        <input #womans type='checkbox' class="list-inline-item" (change)="womans.checked ?  filterChange('womans') : remove('womans')" />Woman
+        <input #kids type='checkbox' class="list-inline-item"  (change)="kids.checked ?  filterChange('kids') : remove('kids')" />Kids
       </div>
      
       <div class='table-responsive'>
-          <table class='table' *ngIf='bikes && bikes.length'>
+          <table class='table' *ngIf='filterBikes && filterBikes.length'>
               <thead>
                   <tr>
                       <th>

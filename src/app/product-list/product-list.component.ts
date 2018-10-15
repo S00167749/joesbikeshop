@@ -15,10 +15,8 @@ export class ProductListComponent implements OnInit {
   imgageWidth : number = 50;
   showImage : boolean = false;
   filterBikes : IProduct[];
-  _listFilter : string;
+  filter: string[] = ["mens", "womans","kids"];
 
-
-  isChecked : boolean;
 
   constructor() { }
 
@@ -30,30 +28,14 @@ export class ProductListComponent implements OnInit {
   toggleImage() : void {
     this.showImage = !this.showImage;
   }
-/*
-  get listFilter() : string {
-    return this._listFilter;
-}
-set listFilter(value : string) {
-    console.log(value);
-    this._listFilter = value;
-    this.filterBikes = this.listFilter ? this.performFilter(this.listFilter) : this.bikes;
-}
-*/
 
-performFilter(filterBy : string) : IProduct[]{
+remove(gender : string){
 
-  filterBy = filterBy.toLocaleLowerCase();
-  return this.bikes.filter((bike1 : IProduct) => bike1.category.toLocaleLowerCase().indexOf(filterBy));
+  //this.filterBikes.splice(.filter((product : IProduct) =>
+  //product.category.toLocaleLowerCase().indexOf(gender) !== -1))
 
-}
-
-click(ev){
-  console.log(ev.target.defaultValue);
-  if(ev.isChecked)
-  {
-    this.filterBikes = this.performFilter(ev.target.defaultValue);
-  }
+  console.log(gender +" not checked");
+  
 }
 
   bikes : IProduct[] = [
@@ -128,4 +110,12 @@ click(ev){
 
   ];
 
+filterChange(gender : string) {
+
+ this.filterBikes = this.bikes.filter((product : IProduct) =>
+ product.category.toLocaleLowerCase().startsWith(gender))
+
+   console.log(gender +" checked");
+}
+    
 }
